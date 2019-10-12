@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="{{url_for('static', filename='images/favicon.png')}}"/>
+    {% include 'html_dependencies.html' %}
+    {% block head %}{% endblock %}
+</head>
+<body class="" style="background-color:#f4f4f4;">
+    
+    <!-- back to master website -->
+    <!-- <div class="pl-3" style="background-color:#2980b9;">
+        <small><a href="http://felixcarrier.com" style="color: white"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> felixcarrier.com</a></small>
+    </div> -->
+    
+    <!-- navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- add task form -->
+    <div style="background-color:#222f3e;"> 
+        <div class="container" >    
+            {% block add_task %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="container" >    
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <!-- <div style="background-color:#222f3e; color:white;">
+        <div class="container">
+            {% include 'footer.html' %}
+        </div>    
+    </div> -->
+    
+
+</body>
+</html>

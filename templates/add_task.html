@@ -1,0 +1,27 @@
+<div class="pb-4 pt-1 my-0">
+    <div class="card">
+        <div class="card-body py-2 border border-light">
+            <form class="" id="post-task" action="{{url_for('create_task')}}" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control form-control-lg border-0" id="task-description" name="task-description" placeholder="Water the plants 🌿💧" >
+                    </div>
+                    <div class="col-auto text-right">
+                        <button type="submit" class="btn btn-lg btn-success" onClick="return empty()"><i class="fa fa-plus" aria-hidden="true"></i> Add Task</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function empty() {
+        var x;
+        x = document.getElementById("task-description").value;
+        if (x == "") {
+            alert("Task description cannot be empty 😕");
+            return false;
+        };
+    }
+</script>

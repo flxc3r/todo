@@ -1,0 +1,47 @@
+{% if tasks|length==0%}
+    <p>No tasks to display</p>
+{% else %}    
+    <div class="card-columns">
+        {% for task in tasks %}
+            <div class="card" >
+                <div class="card-header pb-0 pt-2" style="background-color:#ffffff ;">
+                    <div class="row justify-content-between">
+                        <!-- done checkmark -->
+                        <div class="col-auto">
+                            {% if task.done %}
+                                <a href="{{url_for('done_task', id=task.id)}}" style="color: black" >
+                                    <h3><i class="fa fa-check-circle" aria-hidden="true"></i></h3>
+                                </a>    
+                            {% else %}
+                                <a href="{{url_for('done_task', id=task.id)}}" style="color: black">
+                                    <h3><i class="fa fa-circle-thin" aria-hidden="true"></i></h3>
+                                </a>    
+                            {% endif%}
+                        </div>
+                        
+                        <!-- Edit and delete -->
+                        <div class="col-auto mb-2 align-self-center">
+                            <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#editTaskModal" data-task-id="{{ task.id }}" data-task-description="{{ task.description }}">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#deleteTaskModal" data-task-id="{{ task.id }}" data-task-description="{{ task.description }}">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">{% if task.done %} <s>{{ task.description}}</s> {%else%} {{ task.description}} {% endif%}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer py-0 " style="background-color:#ffffff ;">
+                    <small class="">Added {{ task.ts}}</small>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}   <!-- endif length>0 -->

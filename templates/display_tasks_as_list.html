@@ -1,0 +1,42 @@
+{% if tasks|length==0%}
+    <p>No tasks to display</p>
+{% else %}    
+    {% for task in tasks %}
+        <div class="card my-3" style="background-color:#ffffff ;">
+            <div class="card-body text-dark">
+                <div class="row">
+                    <!-- check mark -->
+                    <div class="col-auto  text-center">
+                        {% if task.done %}
+                            <a href="{{url_for('done_task', id=task.id)}}" style="color: black" >
+                                <i class="fa fa-2x fa-check-circle" aria-hidden="true"></i>
+                            </a>    
+                        {% else %}
+                            <a href="{{url_for('done_task', id=task.id)}}" style="color: black">
+                                <i class="fa fa-2x fa-circle-thin" aria-hidden="true"></i>
+                            </a>    
+                        {% endif%}
+                    </div>
+
+                    <!-- description -->
+                    <div class="col">
+                        {% if not task.done %} {{task.description}} {% else %} <s>{{task.description}}</s> {% endif %}
+                    </div>
+                    
+                    <!-- edit and delete buttons -->
+                    <div class="col-auto text-right ">
+                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#editTaskModal" data-task-id="{{ task.id }}" data-task-description="{{ task.description }}">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#deleteTaskModal" data-task-id="{{ task.id }}" data-task-description="{{ task.description }}">
+                            <i class="fa fa-trash-o fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer py-0" style="background-color:#ffffff ;">
+                <small>Added {{task.ts}}</small>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
