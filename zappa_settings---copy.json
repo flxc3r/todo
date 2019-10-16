@@ -1,0 +1,30 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "us-east-2",
+        "profile_name": "default",
+        "project_name": "todo",
+        "runtime": "python3.7",
+        "s3_bucket": "todo-*********",
+        "aws_environment_variables" : {
+            "TODO_DB_USERNAME":"**********",
+            "TODO_DB_PASSWORD":"**********",
+            "TODO_DB_ENDPOINT":"**********"
+        },
+        "keep_warm": false,
+        "tags": { 
+            "environment": "dev",
+            "project_name": "todo",
+            "billing_category": "projet-based"
+        },
+        "timeout_seconds": 30,
+        "vpc_config": { 
+            "SubnetIds": [ 
+                "subnet-**********",
+                "subnet-**********",
+                "subnet-**********" 
+            ],
+            "SecurityGroupIds": [ "sg-**********" ]
+        }
+    }
+}

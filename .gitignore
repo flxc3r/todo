@@ -3,3 +3,4 @@ ignore-me/
 venv/
 infra/.terraform/
 secrets.py
+zappa_settings.json
