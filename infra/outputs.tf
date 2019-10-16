@@ -8,6 +8,12 @@ output "environment" {
 }
 
 
+### subnets
+output "public_subnets" {
+  value = module.networking.public_subnets
+}
+
+
 ### SG
 output "sg_webdmz" {
   value = module.networking.sg_webdmz
