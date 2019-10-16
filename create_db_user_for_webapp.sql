@@ -1,0 +1,3 @@
+CREATE USER 'myusername' IDENTIFIED BY 'some-password-123';
+GRANT DELETE,INSERT,SELECT,UPDATE ON todo.task TO myusername;
+FLUSH PRIVILEGES;

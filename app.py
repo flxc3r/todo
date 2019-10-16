@@ -1,12 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 import random
+import os
+if os.environ.get("TODO_DB_ENDPOINT") is None:
+    from secrets import TODO_DB_USERNAME, TODO_DB_PASSWORD, TODO_DB_ENDPOINT
+else:
+    TODO_DB_USERNAME = os.environ.get("TODO_DB_USERNAME")
+    TODO_DB_PASSWORD = os.environ.get("TODO_DB_PASSWORD")
+    TODO_DB_ENDPOINT = os.environ.get("TODO_DB_ENDPOINT")
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite3"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite3"
+db_uri = f"mysql+pymysql://{TODO_DB_USERNAME}:{TODO_DB_PASSWORD}@{TODO_DB_ENDPOINT}/todo"
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 db = SQLAlchemy(app)
 
 def generate_id():
@@ -36,31 +45,32 @@ def create_task():
 def create_some_tasks():
     
     tasks_description = [
-        "Water the plants 🌿💧",
-        "Do laundry 🧺",
-        "Walk the dog 🐕",
-        "clean kitchen 🔪",
-        "Clean car 🧽 🚗",
+        "Water the plants",
+        "Do laundry",
+        "Walk the dog",
+        "clean kitchen",
+        "Clean car",
         "Mopping floors",
-        "Mowing the lawn 🏡",
-        "Weeding the garden 👨‍🌾",
-        "Taking out the trash",
+        "Mowing the lawn",
+        "Weeding the garden",
+        "Take the trash out",
         "Wipe down wood furniture with cleaners",
-        "Wash mattress covers, pillow covers, comforters and duvets 🛌",
+        "Wash mattress covers, pillow covers, comforters and duvets",
         "Clean the inside of oven",
-        "Wipe down baseboards and moldings, doors and door frames 🚪",
+        "Wipe down baseboards and moldings, doors and door frames",
         "Wash ceiling light fixtures, and wipe fan blades",
-        "Clean inside the dishwasher with a cleaner recommended by the manufacturer 🍽",
-        "Dust, vacuum or wash window coverings 🏠",
-        "Wipe light switches, door handles and the surrounding wall area 💡",
-        "Answer emails 📧",
-        "Prepare meeting 💼",
-        "Review tomorrow's presentation 📊📈",
-        "Order laptop for incoming intern 💻",
+        "Clean inside of dishwasher with a cleaner recommended by the manufacturer",
+        "Dust, vacuum or wash window coverings",
+        "Wipe light switches, door handles and the surrounding wall area",
+        "Answer emails",
+        "Prepare meeting",
+        "Review tomorrow's presentation",
+        "Order laptop for incoming intern",
     ]
 
-    for description in random.choices(tasks_description, k=5):
-        t = Task(description=description)
+    for i,description in enumerate(tasks_description):
+        ts = now_without_microsecond() + timedelta(0,i)
+        t = Task(description=description, done=random.choice([True, False]), ts=ts)
         db.session.add(t)
     
     db.session.commit()
