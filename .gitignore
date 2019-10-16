@@ -1,3 +1,4 @@
 __pycache__/
 ignore-me/
 venv/
+infra/.terraform/

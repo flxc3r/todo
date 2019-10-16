@@ -1,0 +1,4 @@
+ignore-me/
+terraform.tfvars
+terraform.tfstate.backup
+.terraform
