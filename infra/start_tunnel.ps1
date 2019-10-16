@@ -1,1 +1,1 @@
-putty -load "bastion"
+putty -load "todo-bastion"
