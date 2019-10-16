@@ -1,0 +1,1 @@
+terraform output -json > ignore-me/tf-output.json
