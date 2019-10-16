@@ -14,7 +14,6 @@ resource "aws_security_group" "webdmz" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    self = true
   }
   
   # http
@@ -23,7 +22,6 @@ resource "aws_security_group" "webdmz" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    self= true
   }
 
   # SSH from bastion
@@ -32,7 +30,6 @@ resource "aws_security_group" "webdmz" {
     to_port     = 22
     protocol    = "tcp"
     security_groups = [aws_security_group.bastion.id]
-    self= true
   }
 
   # all
@@ -61,7 +58,6 @@ resource "aws_security_group" "bastion" {
     to_port     = 65535
     protocol    = "tcp"
     cidr_blocks = var.allowed_bastion_ip_cidr_list
-    self = true
     description = "Bastion from home IP"
   }
 
