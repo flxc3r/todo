@@ -6,16 +6,15 @@ output "vpc_id" {
   value = module.vpc.vpc_id
 }
 
-output "allowed_security_groups" {
+output "list_sg_allowed_to_connect_to_db_sg" {
   description = "SGs allowed to connect to database SGs"
   value = [aws_security_group.bastion.id, aws_security_group.webdmz.id]
 }
 
-output "vpc_security_group_ids" {
+output "list_db_sg" {
   description = "Database SGs"
   value = [aws_security_group.db.id]
 }
-
 
 ### SG
 output "sg_webdmz" {

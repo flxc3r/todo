@@ -18,6 +18,6 @@ module "db" {
 
   subnets                         = module.networking.public_subnets
   vpc_id                          = module.networking.vpc_id
-  allowed_security_groups         = module.networking.allowed_security_groups
-  vpc_security_group_ids          = module.networking.vpc_security_group_ids
+  allowed_security_groups         = module.networking.list_sg_allowed_to_connect_to_db_sg
+  vpc_security_group_ids          = module.networking.list_db_sg
 }
