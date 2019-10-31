@@ -16,6 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite3"
 db_uri = f"mysql+pymysql://{TODO_DB_USERNAME}:{TODO_DB_PASSWORD}@{TODO_DB_ENDPOINT}/todo"
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+
 db = SQLAlchemy(app)
 
 def generate_id():

@@ -1,2 +1,17 @@
 /* remove rounding from cards, buttons and inputs */
 .card, .btn, .form-control { border-radius: 0; }
+
+
+/* font awesome */
+.fa {
+    color: #222f3e;
+}
+
+
+.fa-check-circle:hover {
+    color: grey;
+}
+
+.fa-circle-thin:hover {
+    color: grey;
+}
